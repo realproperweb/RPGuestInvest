@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuestHouse SA | Premium Guesthouses for Sale in South Africa</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#d60f15',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom Styles -->
+    <style>
+    .hero-gradient {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .transition-smooth {
+        transition: all 0.3s ease;
+    }
+    .modal-fade {
+        animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</head>
+<body class="font-sans antialiased bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="bi bi-house-door text-2xl text-primary mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">GuestHouse SA</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-primary text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                        <a href="#properties" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Properties</a>
+                        <a href="#locations" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Locations</a>
+                        <a href="#services" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Services</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button onclick="openModal('contact-modal')" class="bg-primary hover:bg-red-800 text-white px-4 py-2 rounded-md text-sm font-medium transition-smooth">
+                        Contact Agent
+                    </button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="bi bi-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-red-50 border-primary text-primary block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#properties" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Properties</a>
+                <a href="#locations" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Locations</a>
+                <a href="#services" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <div class="mt-4 pl-3">
+                    <button onclick="openModal('contact-modal')" class="bg-primary hover:bg-red-800 text-white px-4 py-2 rounded-md text-sm font-medium w-full">
+                        Contact Agent
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                    Premium Guesthouses for Sale in South Africa
+                </h1>
+                <p class="mt-6 max-w-lg mx-auto text-xl">
+                    Discover profitable hospitality businesses in the most sought-after locations across the country.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <button onclick="openModal('search-modal')" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-red-50 md:py-4 md:text-lg md:px-10 transition-smooth">
+                        <i class="bi bi-search mr-2"></i> Find Properties
+                    </button>
+                    <button onclick="openModal('valuation-modal')" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary bg-opacity-90 hover:bg-opacity-100 md:py-4 md:text-lg md:px-10 transition-smooth">
+                        <i class="bi bi-graph-up mr-2"></i> Free Valuation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-4xl font-bold text-primary">150+</div>
+                    <div class="mt-2 text-gray-600">Guesthouses Listed</div>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-4xl font-bold text-primary">R2.5B</div>
+                    <div class="mt-2 text-gray-600">Total Value Sold</div>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-4xl font-bold text-primary">98%</div>
+                    <div class="mt-2 text-gray-600">Client Satisfaction</div>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-4xl font-bold text-primary">25</div>
+                    <div class="mt-2 text-gray-600">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Featured Guesthouses
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Handpicked selection of premium hospitality properties
+                </p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Property 1 -->
+                <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-smooth">
+                    <div class="relative">
+                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cape Town Guesthouse">
+                        <div class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-xs font-bold rounded-bl-lg">
+                            Featured
+                        </div>
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-70 text-white px-3 py-1 text-sm font-medium">
+                            Cape Town
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Seaside Elegance Guesthouse</h3>
+                        <div class="mt-2 flex items-center text-gray-600">
+                            <i class="bi bi-geo-alt mr-1"></i>
+                            <span>Camps Bay, Cape Town</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-600">Rooms:</span>
+                                <span class="ml-1 font-medium">8</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Occupancy:</span>
+                                <span class="ml-1 font-medium">85%</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Price:</span>
+                                <span class="ml-1 font-bold text-primary">R12.5M</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button onclick="openModal('property1-modal')" class="w-full bg-primary hover:bg-red-800 text-white py-2 px-4 rounded-md transition-smooth">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-smooth">
+                    <div class="relative">
+                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Johannesburg Guesthouse">
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-70 text-white px-3 py-1 text-sm font-medium">
+                            Johannesburg
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Urban Retreat Guesthouse</h3>
+                        <div class="mt-2 flex items-center text-gray-600">
+                            <i class="bi bi-geo-alt mr-1"></i>
+                            <span>Sandton, Johannesburg</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-600">Rooms:</span>
+                                <span class="ml-1 font-medium">12</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Occupancy:</span>
+                                <span class="ml-1 font-medium">78%</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Price:</span>
+                                <span class="ml-1 font-bold text-primary">R9.8M</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button onclick="openModal('property2-modal')" class="w-full bg-primary hover:bg-red-800 text-white py-2 px-4 rounded-md transition-smooth">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-smooth">
+                    <div class="relative">
+                        <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1539667468225-eebb663053e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Durban Guesthouse">
+                        <div class="absolute top-0 right-0 bg-green-600 text-white px-2 py-1 text-xs font-bold rounded-bl-lg">
+                            Reduced
+                        </div>
+                        <div class="absolute bottom-0 left-0 bg-black bg-opacity-70 text-white px-3 py-1 text-sm font-medium">
+                            Durban
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900">Tropical Oasis Guesthouse</h3>
+                        <div class="mt-2 flex items-center text-gray-600">
+                            <i class="bi bi-geo-alt mr-1"></i>
+                            <span>Umhlanga, Durban</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-600">Rooms:</span>
+                                <span class="ml-1 font-medium">6</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Occupancy:</span>
+                                <span class="ml-1 font-medium">92%</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Price:</span>
+                                <span class="ml-1 font-bold text-primary">R8.2M</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button onclick="openModal('property3-modal')" class="w-full bg-primary hover:bg-red-800 text-white py-2 px-4 rounded-md transition-smooth">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <button class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-red-800 transition-smooth">
+                    View All Properties
+                    <i class="bi bi-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Popular Locations
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Guesthouses available in South Africa's top destinations
+                </p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="relative group overflow-hidden rounded-lg shadow-md">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cape Town">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-xl font-bold text-white">Cape Town</h3>
+                        <p class="mt-1 text-gray-200">12 Properties</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth bg-black bg-opacity-40">
+                        <button class="bg-white text-primary px-4 py-2 rounded-md font-medium">View Properties</button>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-lg shadow-md">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1592394530384-1d0b978a8985?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Johannesburg">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-xl font-bold text-white">Johannesburg</h3>
+                        <p class="mt-1 text-gray-200">8 Properties</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth bg-black bg-opacity-40">
+                        <button class="bg-white text-primary px-4 py-2 rounded-md font-medium">View Properties</button>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-lg shadow-md">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1590080874085-8dcd35ab8cc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Durban">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-xl font-bold text-white">Durban</h3>
+                        <p class="mt-1 text-gray-200">6 Properties</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth bg-black bg-opacity-40">
+                        <button class="bg-white text-primary px-4 py-2 rounded-md font-medium">View Properties</button>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-lg shadow-md">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Garden Route">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-xl font-bold text-white">Garden Route</h3>
+                        <p class="mt-1 text-gray-200">9 Properties</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth bg-black bg-opacity-40">
+                        <button class="bg-white text-primary px-4 py-2 rounded-md font-medium">View Properties</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Our Services
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Comprehensive solutions for buying and selling guesthouses
+                </p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-white p-8 rounded-lg shadow-md transition-smooth hover:shadow-lg">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-100 text-primary">
+                        <i class="bi bi-house text-2xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-lg font-medium text-gray-900">Property Valuation</h3>
+                    <p class="mt-2 text-gray-600">
+                        Get an accurate market valuation for your guesthouse with our comprehensive assessment service.
+                    </p>
+                    <div class="mt-6">
+                        <button onclick="openModal('valuation-modal')" class="text-primary hover:text-red-800 font-medium">
+                            Request Valuation <i class="bi bi-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md transition-smooth hover:shadow-lg">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-100 text-primary">
+                        <i class="bi bi-briefcase text-2xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-lg font-medium text-gray-900">Business Transfer</h3>
+                    <p class="mt-2 text-gray-600">
+                        Full-service business transfer including licenses, staff handover, and operational training.
+                    </p>
+                    <div class="mt-6">
+                        <button onclick="openModal('contact-modal')" class="text-primary hover:text-red-800 font-medium">
+                            Learn More <i class="bi bi-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md transition-smooth hover:shadow-lg">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-100 text-primary">
+                        <i class="bi bi-graph-up text-2xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-lg font-medium text-gray-900">Performance Analysis</h3>
+                    <p class="mt-2 text-gray-600">
+                        Detailed financial and occupancy analysis to help you make informed investment decisions.
+                    </p>
+                    <div class="mt-6">
+                        <button onclick="openModal('analysis-modal')" class="text-primary hover:text-red-800 font-medium">
+                            Get Analysis <i class="bi bi-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold sm:text-4xl">
+                    What Our Clients Say
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-red-100 mx-auto">
+                    Success stories from guesthouse owners across South Africa
+                </p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <div class="text-yellow-400">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                    <blockquote class="mt-4">
+                        <p class="text-lg font-medium">
+                            "The team at GuestHouse SA found the perfect buyer for my Knysna guesthouse within 3 weeks. Their valuation was spot on and the process was seamless."
+                        </p>
+                    </blockquote>
+                    <div class="mt-6 flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-medium text-gray-900">Sarah Johnson</div>
+                            <div class="text-gray-600">Former Owner, Knysna Hideaway</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <div class="text-yellow-400">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                    <blockquote class="mt-4">
+                        <p class="text-lg font-medium">
+                            "As an international investor, I needed reliable local expertise. GuestHouse SA guided me through every step of purchasing my Cape Town property."
+                        </p>
+                    </blockquote>
+                    <div class="mt-6 flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Müller">
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-medium text-gray-900">David Müller</div>
+                            <div class="text-gray-600">Owner, Cape Town Vista</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <div class="text-yellow-400">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                    <blockquote class="mt-4">
+                        <p class="text-lg font-medium">
+                            "Their market analysis helped me identify an undervalued property in Hermanus that's now my most profitable investment."
+                        </p>
+                    </blockquote>
+                    <div class="mt-6 flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Thandi Nkosi">
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-medium text-gray-900">Thandi Nkosi</div>
+                            <div class="text-gray-600">Owner, Whale Coast Guesthouse</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-primary rounded-lg shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 md:p-12">
+                        <h2 class="text-2xl font-bold text-white sm:text-3xl">
+                            Ready to Start Your Guesthouse Journey?
+                        </h2>
+                        <p class="mt-4 text-red-100">
+                            Whether you're buying or selling, our team of hospitality property specialists is here to guide you through every step of the process.
+                        </p>
+                        <div class="mt-8">
+                            <button onclick="openModal('contact-modal')" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-red-50 transition-smooth">
+                                Contact Us Today
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden md:block bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">GuestHouse SA</h3>
+                    <p class="text-sm">
+                        South Africa's premier marketplace for guesthouse sales and acquisitions. Connecting buyers and sellers since 1998.
+                    </p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="bi bi-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="bi bi-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="bi bi-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="bi bi-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Home</a></li>
+                        <li><a href="#properties" class="text-sm hover:text-white transition-smooth">Properties</a></li>
+                        <li><a href="#locations" class="text-sm hover:text-white transition-smooth">Locations</a></li>
+                        <li><a href="#services" class="text-sm hover:text-white transition-smooth">Services</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">About Us</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Property Valuation</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Business Transfer</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Market Analysis</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Legal Assistance</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Finance Options</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition-smooth">Tax Planning</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Contact Us</h3>
+                    <address class="not-italic text-sm">
+                        <div class="flex items-start mb-2">
+                            <i class="bi bi-geo-alt mr-2 mt-1"></i>
+                            <span>12 Hospitality Lane, Waterfront, Cape Town, 8001</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <i class="bi bi-telephone mr-2"></i>
+                            <span>+27 21 123 4567</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <i class="bi bi-envelope mr-2"></i>
+                            <span>info@guesthousesa.co.za</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="bi bi-clock mr-2"></i>
+                            <span>Mon-Fri: 8:30 AM - 5:00 PM</span>
+                        </div>
+                    </address>
+                    <button onclick="openModal('contact-modal')" class="mt-4 bg-primary hover:bg-red-800 text-white px-4 py-2 rounded-md text-sm font-medium transition-smooth">
+                        Send Message
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="text-sm">
+                        &copy; 2023 GuestHouse SA. All rights reserved.
+                    </div>
+                    <div class="text-sm md:text-right">
+                        <a href="#" class="hover:text-white transition-smooth">Privacy Policy</a> | 
+                        <a href="#" class="hover:text-white transition-smooth">Terms of Service</a> | 
+                        <a href="#" class="hover:text-white transition-smooth">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75" onclick="closeModal('search-modal')"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full modal-fade">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Find Your Perfect Guesthouse
+                            </h3>
+                            <div class="mt-4">
+                                <form>
+                                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                        <div>
+                                            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                                            <select id="location" name="location" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                                <option>Any Location</option>
+                                                <option>Cape Town</option>
+                                                <option>Johannesburg</option>
+                                                <option>Durban</option>
+                                                <option>Garden Route</option>
+                                                <option>Winelands</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="price-range" class="block text-sm font-medium text-gray-700">Price Range</label>
+                                            <select id="price-range" name="price-range" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                                <option>Any Price</option>
+                                                <option>Under R5M</option>
+                                                <option>R5M - R10M</option>
+                                                <option>R10M - R20M</option>
+                                                <option>Over R20M</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="bedrooms" class="block text-sm font-medium text-gray-700">Bedrooms</label>
+                                            <select id="bedrooms" name="bedrooms" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                                <option>Any</option>
+                                                <option>1-5</option>
+                                                <option>6-10</option>
+                                                <option>11-15</option>
+                                                <option>16+</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="occupancy" class="block text-sm font-medium text-gray-700">Min. Occupancy Rate</label>
+                                            <select id="occupancy" name="occupancy" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                                <option>Any</option>
+                                                <option>60%+</option>
+                                                <option>70%+</option>
+                                                <option>80%+</option>
+                                                <option>90%+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <label for="keywords" class="block text-sm font-medium text-gray-700">Keywords</label>
+                                        <input type="text" id="keywords" name="keywords" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
+                        Search Properties
+                    </button>
+                    <button type="button" onclick="closeModal('search-modal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75" onclick="closeModal('contact-modal')"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full modal-fade">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="bi bi-envelope text-primary"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Contact Our Team
+                            </h3>
+                            <div class="mt-2">
+                                <form>
+                                    <div class="grid grid-cols-1 gap-4">
+                                        <div>
+                                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                            <input type="text" id="name" name="name" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div>
+                                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                            <input type="email" id="email" name="email" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div>
+                                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                                            <input type="tel" id="phone" name="phone" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div>
+                                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                            <textarea id="message" name="message" rows="3" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input id="newsletter" name="newsletter" type="checkbox" class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded">
+                                            <label for="newsletter" class="ml-2 block text-sm text-gray-700">
+                                                Subscribe to our newsletter
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
+                        Send Message
+                    </button>
+                    <button type="button" onclick="closeModal('contact-modal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Valuation Modal -->
+    <div id="valuation-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75" onclick="closeModal('valuation-modal')"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full modal-fade">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="bi bi-cash-stack text-primary"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Free Guesthouse Valuation
+                            </h3>
+                            <div class="mt-4">
+                                <form>
+                                    <div class="grid grid-cols-1 gap-4">
+                                        <div>
+                                            <label for="property-address" class="block text-sm font-medium text-gray-700">Property Address</label>
+                                            <input type="text" id="property-address" name="property-address" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div>
+                                            <label for="property-type" class="block text-sm font-medium text-gray-700">Property Type</label>
+                                            <select id="property-type" name="property-type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                                <option>Guesthouse</option>
+                                                <option>Boutique Hotel</option>
+                                                <option>Bed & Breakfast</option>
+                                                <option>Lodge</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="bedrooms" class="block text-sm font-medium text-gray-700">Bedrooms</label>
+                                                <input type="number" id="bedrooms" name="bedrooms" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+                                            <div>
+                                                <label for="occupancy" class="block text-sm font-medium text-gray-700">Avg. Occupancy %</label>
+                                                <input type="number" id="occupancy" name="occupancy" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="annual-turnover" class="block text-sm font-medium text-gray-700">Annual Turnover (ZAR)</label>
+                                            <input type="text" id="annual-turnover" name="annual-turnover" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        </div>
+                                        <div>
+                                            <label for="valuation-notes" class="block text-sm font-medium text-gray-700">Additional Notes</label>
+                                            <textarea id="valuation-notes" name="valuation-notes" rows="2" class="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
+                        Request Valuation
+                    </button>
+                    <button type="button" onclick="closeModal('valuation-modal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property 1 Modal -->
+    <div id="property1-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75" onclick="closeModal('property1-modal')"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full modal-fade">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
+                                Seaside Elegance Guesthouse
+                            </h3>
+                            <div class="mt-2 text-primary font-medium">
+                                <i class="bi bi-geo-alt-fill"></i> Camps Bay, Cape Town
+                            </div>
+                            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <div class="text-sm text-gray-500">Asking Price</div>
+                                    <div class="text-xl font-bold">R12,500,000</div>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <div class="text-sm text-gray-500">Bedrooms</div>
+                                    <div class="text-xl font-bold">8</div>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <div class="text-sm text-gray-500">Annual Turnover</div>
+                                    <div class="text-xl font-bold">R2,800,000</div>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <h4 class="text-lg font-medium text-gray-900">Property Description</h4>
+                                <p class="mt-2 text-gray-600">
+                                    This stunning guesthouse offers breathtaking sea views from every room. Recently renovated to the highest standards, the property features 8 en-suite bedrooms, a spacious lounge area, a gourmet kitchen, and a large outdoor pool with deck. The business has consistently maintained 85% occupancy with excellent reviews across all major platforms.
+                                </p>
+                            </div>
+                            <div class="mt-6 grid grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Key Features</h4>
+                                    <ul class="mt-2 text-gray-600 list-disc list-inside">
+                                        <li>8 Luxury en-suite bedrooms</li>
+                                        <li>180° ocean views</li>
+                                        <li>Solar power system</li>
+                                        <li>Established business (12 years)</li>
+                                        <li>5-star Tripadvisor rating</li>
+                                        <li>Staff quarters included</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Financial Highlights</h4>
+                                    <ul class="mt-2 text-gray-600 list-disc list-inside">
+                                        <li>Annual turnover: R2.8M</li>
+                                        <li>Net profit: R1.2M</li>
+                                        <li>85% average occupancy</li>
+                                        <li>ADR: R1,850</li>
+                                        <li>3-year financials available</li>
+                                        <li>Seller financing possible</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="openModal('contact-modal')" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm">
+                        Arrange Viewing
+                    </button>
+                    <button type="button" onclick="closeModal('property1-modal')" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('[aria-controls="mobile-menu"]').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                const modals = document.querySelectorAll('.fixed.z-50');
+                modals.forEach(modal => {
+                    if (!modal.classList.contains('hidden')) {
+                        const modalId = modal.id;
+                        closeModal(modalId);
+                    }
+                });
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
